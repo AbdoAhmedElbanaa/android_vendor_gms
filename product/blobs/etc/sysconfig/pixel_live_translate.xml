@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2024 Google Inc.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<config>
+    <!-- AiAi (Device Personalization Services) needs power-save and data-saver exemptions
+         so it can process content capture events and trigger translation in background.
+         While AiAi doesn't hold INTERNET itself, it needs to stay alive in background
+         to coordinate with PCS (Astrea). -->
+    <allow-in-power-save package="com.google.android.as" />
+    <allow-in-data-usage-save package="com.google.android.as" />
+
+    <!-- Private Compute Services (Astrea) is the ONLY process that actually downloads
+         language packs and ML models from gstatic.com. It MUST be exempted from
+         power-save chains and data saver to successfully complete downloads. -->
+    <allow-in-power-save package="com.google.android.as.oss" />
+    <allow-in-data-usage-save package="com.google.android.as.oss" />
+
+    <!-- Bidirectional IPC association between AiAi and its PCS bridge.
+         The reverse direction (oss -> as) is not present in google.xml -->
+    <allow-association target="com.google.android.as.oss" allowed="com.google.android.as" />
+
+    <!-- Allow PCS to communicate with GMS for download coordination -->
+    <allow-association target="com.google.android.as.oss" allowed="com.google.android.gms" />
+</config>

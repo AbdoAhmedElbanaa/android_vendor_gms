@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<!--
+  ~ Copyright (C) 2024 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+-->
+
+<!--
+    Default runtime permission grants for Device Personalization Services (AiAi).
+    AiAi is a core system-integrated AI service responsible for:
+      - Live Translate (Chat Translate floating bar / Blue Chip UI)
+      - Now Playing (ambient music identification)
+      - Smart Captions, Ambient Context Detection
+      - Content Capture / Content Suggestions
+
+    SYSTEM_ALERT_WINDOW is listed here as a "dangerous" appop-gated permission.
+    Although AiAi holds android.permission.SYSTEM_APPLICATION_OVERLAY (a signature
+    permission) which is the preferred path for privileged overlays, some code paths
+    in older Phenotype flag states still check the SYSTEM_ALERT_WINDOW AppOp mode.
+    Pre-granting it here (fixed=false so the user can revoke) ensures the Live
+    Translate floating chip / bar is never silently blocked by the AppOp default state.
+
+    POST_NOTIFICATIONS is required for Live Translate and Now Playing persistent
+    foreground service notifications and translation chip notifications.
+
+    RECORD_AUDIO is required for real-time Speech-to-Text (Live Transcribe, Captions).
+    READ_CONTACTS is required for Smart Reply and People suggestions.
+-->
+
+<exceptions>
+    <exception package="com.google.android.as">
+        <!-- Live Translate floating bar (Blue Chip Translate / Chat Translate) -->
+        <permission name="android.permission.SYSTEM_ALERT_WINDOW" fixed="false"/>
+        <!-- Foreground service and notification for Live Translate & Now Playing -->
+        <permission name="android.permission.POST_NOTIFICATIONS" fixed="false"/>
+        <!-- Real-time microphone access for Captions and Speech Recognition -->
+        <permission name="android.permission.RECORD_AUDIO" fixed="false"/>
+        <!-- Smart suggestions powered by contacts -->
+        <permission name="android.permission.READ_CONTACTS" fixed="false"/>
+    </exception>
+</exceptions>

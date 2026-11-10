@@ -318,6 +318,9 @@ It allows additional grants on top of privapp-permissions-platform.xml
         <permission name="android.permission.PERSONAL_CONTEXT_HOST_INSIGHT_SURFACE"/>
         <permission name="android.permission.PERSONAL_CONTEXT_RECEIVE_INSIGHTS"/>
         <permission name="com.google.android.ambientindication.permission.AMBIENT_INDICATION" />
+        <!-- Live Translate floating overlay bar requires this -->
+        <permission name="android.permission.SYSTEM_APPLICATION_OVERLAY"/>
+        <permission name="android.permission.ACCESS_NETWORK_STATE"/>
     </privapp-permissions>
 
     <privapp-permissions package="com.google.android.as.oss">
@@ -327,6 +330,10 @@ It allows additional grants on top of privapp-permissions-platform.xml
       <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
       <!-- Permission to receive insights for personal context visualizer. -->
       <permission name="android.permission.PERSONAL_CONTEXT_RECEIVE_INSIGHTS"/>
+      <!-- Language pack download via Private Compute Services needs INTERNET and network access -->
+      <permission name="android.permission.INTERNET"/>
+      <permission name="android.permission.ACCESS_NETWORK_STATE"/>
+      <permission name="android.permission.MANAGE_VIRTUAL_MACHINE"/>
     </privapp-permissions>
 
     <privapp-permissions package="com.google.android.carrier">

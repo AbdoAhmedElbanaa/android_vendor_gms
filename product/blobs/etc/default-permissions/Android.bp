@@ -135,6 +135,14 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
+    name: "default-permissions-com.google.android.as",
+    product_specific: true,
+    sub_dir: "default-permissions",
+    src: "default-permissions-com.google.android.as.xml",
+    filename_from_src: true,
+}
+
+prebuilt_etc {
     name: "default_permissions_allowlist",
     product_specific: true,
     sub_dir: "default-permissions",

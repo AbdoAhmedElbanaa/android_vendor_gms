@@ -351,6 +351,14 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
+    name: "pixel_live_translate",
+    product_specific: true,
+    sub_dir: "sysconfig",
+    src: "pixel_live_translate.xml",
+    filename_from_src: true,
+}
+
+prebuilt_etc {
     name: "preinstalled-packages-glasses-core-pixel-common",
     product_specific: true,
     sub_dir: "sysconfig",
